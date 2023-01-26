@@ -24,7 +24,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Math Magician <a name="about-project"></a>
+# 📖 React Bookstore <a name="about-project"></a>
 
 <b>React Bookstore</b> is a website for Mathematics lovers. The website is built with React JS.
 
@@ -41,7 +41,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](#)
+- Coming Soon...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
