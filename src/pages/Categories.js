@@ -5,11 +5,9 @@ import { checkStatus } from '../redux/categories/categories';
 const Categories = () => {
   const dispatch = useDispatch();
   const currentStatus = useSelector((state) => state.categories);
-
   const showStatus = () => {
     dispatch(checkStatus());
   };
-
   return (
     <div>
       <h4>{currentStatus}</h4>
@@ -17,5 +15,4 @@ const Categories = () => {
     </div>
   );
 };
-
 export default Categories;
