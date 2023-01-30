@@ -1,4 +1,3 @@
-// Type
 const CHECK_STATUS = 'bookstore-roy/categories/CHECK_STATUS';
 
 // Actions
