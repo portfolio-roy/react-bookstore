@@ -121,7 +121,7 @@ $ npm run deploy
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Prantosh Biswas**
+👤 **Utsargo Roy**
 
 - GitHub: [@utsargo](https://github.com/utsargo)
 - Twitter: [@royutsargo](https://twitter.com/royutsargo)
@@ -145,7 +145,6 @@ Give a ⭐️ if you like this project!
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Use Redux in React components.
 - [ ] Add API.
 - [ ] Add CSS for better UI.
 
