@@ -5,10 +5,12 @@ import { addBook } from '../redux/books/books';
 
 const createBook = (title, author) => (
   {
-    id: uuidv4(),
+    item_id: uuidv4(),
     title,
     author,
-  });
+    category: 'Adventure',
+  }
+);
 
 const Form = () => {
   const titleValue = useRef();
@@ -17,14 +19,12 @@ const Form = () => {
   const clickHandler = (e) => {
     const title = titleValue.current.value;
     const author = authorValue.current.value;
-
     if (title !== '' && author !== '') {
       dispatch(addBook(createBook(title, author)));
       titleValue.current.value = '';
       authorValue.current.value = '';
     } else e.preventDefault();
   };
-
   return (
     <div>
       <form>
@@ -35,5 +35,4 @@ const Form = () => {
     </div>
   );
 };
-
 export default Form;
