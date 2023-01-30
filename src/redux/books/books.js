@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
@@ -9,8 +8,12 @@ const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstor
 const getAllBooks = createAsyncThunk(
   GET_BOOKS,
   async (post, { dispatch }) => {
-    const response = await axios.get(url);
-    const books = response.data;
+    const response = await fetch(url);
+    const data = await response.json();
+    const books = Object.keys(data).map((id) => ({
+      ...data[id][0],
+      item_id: id,
+    }));
     dispatch({
       type: GET_BOOKS,
       payload: books,
@@ -21,7 +24,11 @@ const getAllBooks = createAsyncThunk(
 const addBook = createAsyncThunk(
   ADD,
   async (book, { dispatch }) => {
-    await axios.post(url, book);
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book),
+    });
     dispatch({
       type: ADD,
       payload: book,
@@ -32,7 +39,9 @@ const addBook = createAsyncThunk(
 const removeBook = createAsyncThunk(
   REMOVE,
   async (id, { dispatch }) => {
-    await axios.delete(`${url}/${id}`);
+    await fetch(`${url}/${id}`, {
+      method: 'DELETE',
+    });
     dispatch({
       type: REMOVE,
       payload: id,
