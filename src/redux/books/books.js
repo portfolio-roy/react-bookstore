@@ -1,44 +1,66 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
-// Types
-const ADD = 'bookstore-roy/books/ADD';
-const REMOVE = 'bookstore-roy/books/REMOVE';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// Default sate
-const defaultState = [
-  {
-    id: uuidv4(),
-    title: 'Pale Blue Dot: A Vision of the Human Future in Space',
-    author: 'Carl Sagan',
+const ADD = 'ADD';
+const REMOVE = 'REMOVE';
+const GET_BOOKS = 'GET_BOOKS';
+const url = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ScuVQP7NPLm2aX4CZF23/books';
+
+const getAllBooks = createAsyncThunk(
+  GET_BOOKS,
+  async (post, { dispatch }) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    const books = Object.keys(data).map((id) => ({
+      ...data[id][0],
+      item_id: id,
+    }));
+    dispatch({
+      type: GET_BOOKS,
+      payload: books,
+    });
   },
-  {
-    id: uuidv4(),
-    title: 'A People\'s History of the United States',
-    author: 'Howard Zinn',
+);
+
+const addBook = createAsyncThunk(
+  ADD,
+  async (book, { dispatch }) => {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book),
+    });
+    dispatch({
+      type: ADD,
+      payload: book,
+    });
   },
-];
+);
 
-// Actions
-const addBook = (book) => ({
-  type: ADD,
-  payload: {
-    id: uuidv4(),
-    title: book.title,
-    author: book.author,
+const removeBook = createAsyncThunk(
+  REMOVE,
+  async (id, { dispatch }) => {
+    await fetch(`${url}/${id}`, {
+      method: 'DELETE',
+    });
+    dispatch({
+      type: REMOVE,
+      payload: id,
+    });
   },
-});
+);
 
-const removeBook = (index) => ({
-  type: REMOVE,
-  payload: index,
-});
+const bookReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_BOOKS:
+      return action.payload;
+    case ADD:
+      return [...state, action.payload];
+    case REMOVE:
+      return [...state.filter((book) => book.item_id !== action.payload)];
+    default:
+      return state;
+  }
+};
 
-// Book Reducer
-
-const bookReducer = createReducer(defaultState, {
-  [ADD]: (state, action) => [...state, action.payload],
-  [REMOVE]: (state, action) => [...state.filter((book) => book.id !== action.payload)],
-});
-
-export { addBook, removeBook };
+export { getAllBooks, addBook, removeBook };
 export default bookReducer;
