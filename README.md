@@ -41,7 +41,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- Coming Soon...
+- #### [Live demo](https://react-bookstore.utsargo.tech)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,8 +145,7 @@ Give a ⭐️ if you like this project!
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] Add API.
-- [ ] Add CSS for better UI.
+- N/A
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- LICENSE -->

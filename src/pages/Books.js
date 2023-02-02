@@ -11,21 +11,20 @@ const Books = () => {
     dispatch(getAllBooks());
   }, [dispatch]);
   return (
-    <>
+    <div className="books d-flex flex-column akign-center">
 
-      <ul>
-        {books.map((book) => (
-          <Book
-            key={book.item_id}
-            id={book.item_id}
-            title={book.title}
-            author={book.author}
-          />
-        ))}
-
-      </ul>
+      {books.map((book) => (
+        <Book
+          category={book.category}
+          key={book.item_id}
+          id={book.item_id}
+          title={book.title}
+          author={book.author}
+        />
+      ))}
+      <div className="horizontal-divider" />
       <Form />
-    </>
+    </div>
   );
 };
 
