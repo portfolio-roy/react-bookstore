@@ -9,9 +9,9 @@ const Categories = () => {
     dispatch(checkStatus());
   };
   return (
-    <div>
+    <div className="cat-container d-flex flex-column align-center justify-center">
       <h4>{currentStatus}</h4>
-      <button type="button" onClick={showStatus}>Check Status</button>
+      <button type="button" className="btn-primary" onClick={showStatus}>Check Status</button>
     </div>
   );
 };
