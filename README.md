@@ -26,7 +26,7 @@
 
 # 📖 React Bookstore <a name="about-project"></a>
 
-<b>React Bookstore</b> is a website for Mathematics lovers. The website is built with React JS.
+<b>React Bookstore</b> is a website for book lovers. The website is built with React JS.
 
 ## 🛠 Built With <a name="built-with"></a>
 
